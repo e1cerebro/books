@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import BookEdit from './BookEdit';
+import BooksContext from '../context/books';
 
-const BookShow = ({book, onDelete, onEdit}) => {
+const BookShow = ({book}) => {
 	const [showEdit, setShowEdit] = useState(false);
+	const { deleteBookByID, editBookTitle } = useContext(BooksContext);
 
 	const handleDeleteClick = () => {
-		onDelete(book.id);
+		deleteBookByID(book.id);
 	}
 
 	const showEditForm = () => {
@@ -13,7 +15,7 @@ const BookShow = ({book, onDelete, onEdit}) => {
 	}
 
 	const handleSubmit = (id, title) => {
-		onEdit(id, title);
+		editBookTitle(id, title);
 		setShowEdit(false);
 	}
 
@@ -22,7 +24,7 @@ const BookShow = ({book, onDelete, onEdit}) => {
 			{ showEdit && <BookEdit book={book} onSubmit={handleSubmit} />}
 			{!showEdit && 
 				<>
-					<img src={`https://picsum.photos/seed/${book.id}/300/200`} />
+					<img src={`https://picsum.photos/seed/${book.id}/300/200`} alt={book.title} />
 					<h2 className='text-lg'>{book.title}</h2> 
 					<div className='flex gap-2 mt-4'>
 						<button className='delete btn' onClick={handleDeleteClick}>Delete</button>
