@@ -1,8 +1,12 @@
 {
   "books": [
     {
-      "title": "Acne Treatment",
+      "title": "ACNE Treatment",
       "id": 1
+    },
+    {
+      "title": "Testing",
+      "id": 2
     }
   ]
 }
